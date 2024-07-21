@@ -143,7 +143,7 @@ Auto_Swap() {
 }
 Service_Add() {
     if Command_Exists systemctl ; then
-        wget -t 5 -T 15 --no-check-certificate -O /usr/lib/systemd/system/btpanel.service https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/btpanel.service
+        wget -t 5 -T 15 --no-check-certificate -O /usr/lib/systemd/system/btpanel.service https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/btpanel.service
         systemctl daemon-reload
         systemctl enable btpanel
 
@@ -446,7 +446,7 @@ Get_Versions() {
 }
 
 Install_Python_Lib() {
-    curl -Ss --connect-timeout 3 -m 60 https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip_select.sh | bash
+    curl -Ss --connect-timeout 3 -m 60 https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip_select.sh | bash
     pyenv_path="/www/server/panel"
     if [ -f $pyenv_path/pyenv/bin/python ]; then
         is_ssl=$($python_bin -c "import ssl" 2>&1 | grep cannot)
@@ -455,7 +455,7 @@ Install_Python_Lib() {
             chmod -R 700 $pyenv_path/pyenv/bin
             is_package=$($python_bin -m psutil 2>&1 | grep package)
             if [ "$is_package" = "" ]; then
-                wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip_en.txt
+                wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip_en.txt
                 $pyenv_path/pyenv/bin/pip install -U pip
                 $pyenv_path/pyenv/bin/pip install -U setuptools
                 $pyenv_path/pyenv/bin/pip install -r $pyenv_path/pyenv/pip.txt
@@ -528,11 +528,11 @@ Install_Python_Lib() {
     if [ "${os_version}" != "" ]; then
         pyenv_file="/www/pyenv.tar.gz"
         #wget --no-check-certificate -O $pyenv_file $download_Url/install/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
-	wget --no-check-certificate -O $pyenv_file https://github.com/mzwrt/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
+	wget --no-check-certificate -O $pyenv_file https://github.com/adilem/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
         if [ "$?" != "0" ];then
             get_node_url $download_Url
             #wget --no-check-certificate -O $pyenv_file $download_Url/install/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
-            wget --no-check-certificate -O $pyenv_file https://github.com/mzwrt/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
+            wget --no-check-certificate -O $pyenv_file https://github.com/adilem/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 15
         fi
         tmp_size=$(du -b $pyenv_file | awk '{print $1}')
         if [ $tmp_size -lt 703460 ]; then
@@ -564,7 +564,7 @@ Install_Python_Lib() {
     python_src='/www/python_src.tar.xz'
     python_src_path="/www/Python-${py_version}"
     #wget --no-check-certificate -O $python_src $download_Url/src/Python-${py_version}.tar.xz -T 15
-    wget --no-check-certificate -O $python_src https://github.com/mzwrt/aapanel-6.8.37-backup/releases/download/python/Python-${py_version}.tar.xz -T 15
+    wget --no-check-certificate -O $python_src https://github.com/adilem/aapanel-6.8.37-backup/releases/download/python/Python-${py_version}.tar.xz -T 15
     tmp_size=$(du -b $python_src | awk '{print $1}')
     if [ $tmp_size -lt 10703460 ]; then
         rm -f $python_src
@@ -582,8 +582,8 @@ Install_Python_Lib() {
     fi
     cd ~
     rm -rf $python_src_path
-    wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/bin/activate https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/activate.panel
-    wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip-3.7.8.txt
+    wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/bin/activate https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/activate.panel
+    wget -T 15 --no-check-certificate -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip-3.7.8.txt
     ln -sf $pyenv_path/pyenv/bin/pip3.7 $pyenv_path/pyenv/bin/pip
     ln -sf $pyenv_path/pyenv/bin/python3.7 $pyenv_path/pyenv/bin/python
     ln -sf $pyenv_path/pyenv/bin/pip3.7 /usr/bin/btpip
@@ -642,9 +642,9 @@ Install_Bt() {
         sleep 1
     fi
 
-    wget -T 15 --no-check-certificate -O panel.zip https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/panel6_en.zip
-    wget -T 15 --no-check-certificate -O /etc/init.d/bt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/bt6_en.init
-    wget -T 15 --no-check-certificate -O /www/server/panel/install/public.sh https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/public.sh
+    wget -T 15 --no-check-certificate -O panel.zip https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/panel6_en.zip
+    wget -T 15 --no-check-certificate -O /etc/init.d/bt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/bt6_en.init
+    wget -T 15 --no-check-certificate -O /www/server/panel/install/public.sh https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/public.sh
 
     if [ -f "${setup_path}/server/panel/data/default.db" ]; then
         if [ -d "/${setup_path}/server/panel/old_data" ]; then
@@ -693,9 +693,9 @@ Install_Bt() {
     chmod -R +x ${setup_path}/server/panel/script
     ln -sf /etc/init.d/bt /usr/bin/bt
     echo "${panelPort}" >${setup_path}/server/panel/data/port.pl
-    wget -T 15 --no-check-certificate -O /etc/init.d/bt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/bt6_en.init
-    wget -T 15 --no-check-certificate -O /www/server/panel/init.sh https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/bt6_en.init
-    wget --no-check-certificate -O /www/server/panel/data/softList.conf https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/softList_en.conf
+    wget -T 15 --no-check-certificate -O /etc/init.d/bt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/bt6_en.init
+    wget -T 15 --no-check-certificate -O /www/server/panel/init.sh https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/bt6_en.init
+    wget --no-check-certificate -O /www/server/panel/data/softList.conf https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/softList_en.conf
 }
 # Other_Openssl() {
 #     openssl_version=$(openssl version | grep -Eo '[0-9]\.[0-9]\.[0-9]')
