@@ -4,7 +4,7 @@
 
 安装/install：
 
-     wget  https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install.sh && bash install.sh
+     wget  https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install.sh && bash install.sh
 
 
 纯官方版，无任何改动
@@ -32,7 +32,7 @@ nginx.sh 基于BT官方文件修改了一下，文件里面有详细解释，主
 
 nginx.sh 使用方法：
 
-     rm -f /www/server/panel/install/nginx.sh && wget -O /www/server/panel/install/nginx.sh https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/nginx.sh -T 20 && bash /www/server/panel/install/nginx.sh install 1.24
+     rm -f /www/server/panel/install/nginx.sh && wget -O /www/server/panel/install/nginx.sh https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/nginx.sh -T 20 && bash /www/server/panel/install/nginx.sh install 1.24
 
 注意修改命令尾部的版本号，默认安装 nginx 1.24
 
@@ -99,7 +99,7 @@ ModSecurity-nginx.sh 基于nginx.sh添加了ModSecurity防火墙（ OWASP CRS �
 
 ModSecurity-nginx.sh 使用方法：
 
-     rm -f /www/server/panel/install/nginx.sh && wget -O  /www/server/panel/install/nginx.sh https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/ModSecurity-nginx.sh -T 20 && bash /www/server/panel/install/nginx.sh install 1.24
+     rm -f /www/server/panel/install/nginx.sh && wget -O  /www/server/panel/install/nginx.sh https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/ModSecurity-nginx.sh -T 20 && bash /www/server/panel/install/nginx.sh install 1.24
 
 
 ModSecurity存放路径：/www/server/nginx/owasp/ModSecurity
