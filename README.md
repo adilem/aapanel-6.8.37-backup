@@ -4,7 +4,8 @@
 
 安装/install：
 
-     wget  https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install.sh && bash install.sh
+URL=https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install.sh "$URL";fi;bash install.sh aapanel
+
 
 
 纯官方版，无任何改动
