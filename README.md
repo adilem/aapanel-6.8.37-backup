@@ -1,11 +1,10 @@
-# aapanel-6.8.37-backup
+# aaPanel_v6
 
-使用方法：
+One step for installation :
+```
+ URL=https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install.sh "$URL";fi;bash install.sh aapanel
 
-# install：
-
-
-URL=https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install.sh "$URL";fi;bash install.sh aapanel
+```
 
 
 
