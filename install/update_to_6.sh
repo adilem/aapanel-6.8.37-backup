@@ -50,13 +50,13 @@ check_panel(){
 select_node(){
     public_file=/www/server/panel/install/public.sh
     if [ ! -f $public_file ];then
-        download_file $public_file https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/public.sh
+        download_file $public_file https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/public.sh
     fi
 
     publicFileMd5=$(md5sum ${public_file}|awk '{print $1}')
     md5check="db0bc4ee0d73c3772aa403338553ff77"
     if [ "${publicFileMd5}" != "${md5check}"  ]; then
-        download_file $public_file https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/public.sh
+        download_file $public_file https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/public.sh
     fi
 
     . $public_file
@@ -80,14 +80,14 @@ install_pack(){
 }
 
 install_python(){
-	curl -Ss --connect-timeout 3 -m 60 https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip_select.sh|bash
+	curl -Ss --connect-timeout 3 -m 60 https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip_select.sh|bash
 	pyenv_path="/www/server/panel"
     python_bin=$pyenv_path/pyenv/bin/python
 	if [ -f $pyenv_path/pyenv/bin/python ];then
 		chmod -R 700 $pyenv_path/pyenv/bin
 		is_package=$($python_bin -m psutil 2>&1|grep package)
 		if [ "$is_package" = "" ];then
-			wget -T 5 -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip.txt
+			wget -T 5 -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip.txt
 			$pyenv_path/pyenv/bin/pip install -U pip
 			$pyenv_path/pyenv/bin/pip install -U setuptools
 			$pyenv_path/pyenv/bin/pip install -r $pyenv_path/pyenv/pip.txt
@@ -113,7 +113,7 @@ install_python(){
 	if [ "${os_version}" != "" ];then
 		pyenv_file="/www/pyenv.tar.gz"
 		#wget -O $pyenv_file $download_Url/install/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 10
-  		wget -O $pyenv_file https://github.com/mzwrt/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 10
+  		wget -O $pyenv_file https://github.com/adilem/aapanel-6.8.37-backup/releases/download/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 10
 		tmp_size=$(du -b $pyenv_file|awk '{print $1}')
 		if [ $tmp_size -lt 703460 ];then
 			rm -f $pyenv_file
@@ -145,7 +145,7 @@ install_python(){
 	python_src='/www/python_src.tar.xz'
 	python_src_path="/www/Python-${py_version}"
 	#wget -O $python_src $download_Url/src/Python-${py_version}.tar.xz -T 5
- 	wget -O $python_src https://github.com/mzwrt/aapanel-6.8.37-backup/releases/download/python/Python-${py_version}.tar.xz -T 5
+ 	wget -O $python_src https://github.com/adilem/aapanel-6.8.37-backup/releases/download/python/Python-${py_version}.tar.xz -T 5
 	tmp_size=$(du -b $python_src|awk '{print $1}')
 	if [ $tmp_size -lt 10703460 ];then
 		rm -f $python_src
@@ -163,8 +163,8 @@ install_python(){
 	fi
 	cd ~
 	rm -rf $python_src_path
-	wget -T 5 -O $pyenv_path/pyenv/bin/activate https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/activate.panel
-	wget -T 5 -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/pip.txt
+	wget -T 5 -O $pyenv_path/pyenv/bin/activate https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/activate.panel
+	wget -T 5 -O $pyenv_path/pyenv/pip.txt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/pip.txt
 	ln -sf $pyenv_path/pyenv/bin/pip3.7 $pyenv_path/pyenv/bin/pip
 	ln -sf $pyenv_path/pyenv/bin/python3.7 $pyenv_path/pyenv/bin/python
     ln -sf $pyenv_path/pyenv/bin/pip3.7 /usr/bin/btpip
@@ -292,7 +292,7 @@ Get_Versions(){
 }
 
 update_panel(){
-    wget -T 5 -O /tmp/panel.zip https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/panel6_en.zip
+    wget -T 5 -O /tmp/panel.zip https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/panel6_en.zip
     dsize=$(du -b /tmp/panel.zip|awk '{print $1}')
     if [ $dsize -lt 10240 ];then
         echo "获取更新包失败，请稍后更新或联系宝塔运维"
@@ -304,14 +304,14 @@ update_panel(){
     check_bt=`cat /etc/init.d/bt|grep BT-Task`
     if [ "${check_bt}" = "" ];then
         rm -f /etc/init.d/bt
-        wget -T 20 -O /etc/init.d/bt https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/bt6_en.init
+        wget -T 20 -O /etc/init.d/bt https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/bt6_en.init
         chmod +x /etc/init.d/bt
     fi
     rm -f /www/server/panel/*.pyc
     rm -f /www/server/panel/class/*.pyc
     if [ ! -f $setup_path/server/panel/config/config.json ];then
-        wget -T 5 -O $setup_path/server/panel/config/config.json https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/config.json
-        wget -T 5 -O $setup_path/server/panel/config/dns_api.json https://raw.githubusercontent.com/mzwrt/aapanel-6.8.37-backup/main/install/dns_api.json
+        wget -T 5 -O $setup_path/server/panel/config/config.json https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/config.json
+        wget -T 5 -O $setup_path/server/panel/config/dns_api.json https://raw.githubusercontent.com/adilem/aapanel-6.8.37-backup/main/install/dns_api.json
     fi
 
     chattr -i /etc/init.d/bt
